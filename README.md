@@ -27,5 +27,21 @@ sudo apt-get install geographiclib-*
 roslaunch mavros apm.launch 
 roslaunch mavros px4.launch 
 ```
+
+## Commands
+- Changing flight mode
+  service call /mavros/set_mode with mode from apm in custom mode
+  
+  Mode list: GUIDED_NOGPS AVOID_ADSB THROW BRAKE POSHOLD AUTOTUNE FLIP SPORT DRIFT OF_LOITER LAND POSITION CIRCLE RTL LOITER GUIDED AUTO ALT_HOLD ACRO STABILIZE
+
+- Arming 
+  service call /mavros/cmd/arming
+  
+  
+
 ## TODO
 1. figure out why when mavros closes, it becomes a serial killer
+
+## Changes made to note
+1. timesynce
+2. launch file baudrate, port
