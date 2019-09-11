@@ -36,7 +36,11 @@ roslaunch mavros px4.launch
 
 - Arming 
   service call /mavros/cmd/arming
-  
+ 
+## mavros param
+- Circuit Breaker
+  - CBRK_SUPPLY_CHK
+  - CBRK_USB_CHK, disable USB and supply voltage check
   
 
 ## TODO
