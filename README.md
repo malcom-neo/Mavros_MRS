@@ -32,7 +32,9 @@ roslaunch mavros px4.launch
 - Changing flight mode
   service call /mavros/set_mode with mode from apm in custom mode
   
-  Mode list: GUIDED_NOGPS AVOID_ADSB THROW BRAKE POSHOLD AUTOTUNE FLIP SPORT DRIFT OF_LOITER LAND POSITION CIRCLE RTL LOITER GUIDED AUTO ALT_HOLD ACRO STABILIZE
+  APM mode list: GUIDED_NOGPS AVOID_ADSB THROW BRAKE POSHOLD AUTOTUNE FLIP SPORT DRIFT OF_LOITER LAND POSITION CIRCLE RTL LOITER GUIDED AUTO ALT_HOLD ACRO STABILIZE
+
+  PX4 mode list: Known modes are: AUTO.PRECLAND AUTO.FOLLOW_TARGET AUTO.RTGS AUTO.LAND AUTO.RTL AUTO.MISSION RATTITUDE AUTO.LOITER STABILIZED AUTO.TAKEOFF OFFBOARD POSCTL ALTCTL AUTO.READY ACRO MANUAL
 
 - Arming 
   service call /mavros/cmd/arming
@@ -41,10 +43,11 @@ roslaunch mavros px4.launch
 - Circuit Breaker
   - CBRK_SUPPLY_CHK
   - CBRK_USB_CHK, disable USB and supply voltage check
-  
+ - pmw_min, stop mot arming spin
 
 ## TODO
-1. figure out why when mavros closes, it becomes a serial killer
+1. OFFBOARD timeout 0.5s, need to constantly send mavlink command, command is queueing up serial line.
+2. Somehow exiting offboard mode, to alt ctrl, altitude not reached? need actual flying drone?
 
 ## Changes made to note
 1. timesynce
