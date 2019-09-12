@@ -38,6 +38,9 @@ roslaunch mavros px4.launch
 
 - Arming 
   service call /mavros/cmd/arming
+  
+- Setting throttle
+  topic pub setpoint_attitude/attitude
  
 ## mavros param
 - Circuit Breaker
