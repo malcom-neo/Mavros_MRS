@@ -48,7 +48,11 @@ roslaunch mavros px4.launch
   - CBRK_USB_CHK, disable USB and supply voltage check
  - pmw_min, stop mot arming spin
  
- ## progress
+ ## Change log
+ 
+ 16/9
+ 
+ 1. Changed param MAVUSEHILGPS to 1
  
  ---
  
@@ -61,6 +65,7 @@ roslaunch mavros px4.launch
  unable to setpoint_position/global and change to offboard. 
 
 managed to get things flying through setpoint_position/local with z=2, without setting frame rate 100, change to offboard
+ 
  
 
  
