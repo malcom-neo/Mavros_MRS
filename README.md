@@ -52,8 +52,10 @@ roslaunch mavros px4.launch
  
  16/9
  
- 1. Changed param MAVUSEHILGPS to 1
- 
+ 1. Changed param MAV_USEHILGPS to 1
+ 2. published global_position/global msg
+ 3. able to go pub setpoint_position/local and bypass position error.
+ 4. unable to stay in offboard mode
  ---
  
  16/9
