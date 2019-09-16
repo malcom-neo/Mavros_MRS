@@ -60,7 +60,7 @@ roslaunch mavros px4.launch
  
  unable to setpoint_position/global and change to offboard. 
 
-managed to get things flying through setpoint_position/local with z=2 rate 100, change to offboard
+managed to get things flying through setpoint_position/local with z=2, without setting frame rate 100, change to offboard
  
 
  
