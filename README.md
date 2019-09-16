@@ -1,78 +1,90 @@
-# MRS Rocks My Socks
+# MRS Rox My Sox
 
 ## Introduction
-This is a SUTD capstone(fyp) that is about an autonomous quad built to inspect for cracks in the inner ship hull through contact based sonic waves. It is built using ROS Melodic architecture, and is build in collaboration with SUTD's club [Multi-Rotor Society(MRS)](https://github.com/multirotorsociety).
+This documents the efforts of the SUTD [Multi-Rotor Society(MRS)](https://github.com/multirotorsociety) to get MAVROS to work with drones in a variety of use cases including but not limited to:
+- GPS-enabled with `OFFBOARD` control using Global Pose
+- GPS-denied with `OFFBOARD` contol using Local Pose
+The test hardware is a PixHawk Cube running PX4.
+More detailed instructions will be outlined as progress is made.
 
 ## Installing mavros
 
-1. debian installing
+1. Debian installation:
 ```
 sudo apt-get install ros-melodic-mavros
 sudo apt-get install ros-melodic-mavros-extras
 ```
+Debian installation is the most convenient though it is also possible to build from source: instructions [here](https://dev.px4.io/v1.9.0/en/ros/mavros_installation.html#source-installation).
 
-2. install GeographicLib
+2. GeographicLib installation:
 ```
 sudo apt-get install geographiclib-*
 ```
 
-3. source ros and install dataset
-- go to [mavros github](https://github.com/mavlink/mavros) and download it
-- install dataset
+3. Source ros and install dataset
+- Go to [mavros github](https://github.com/mavlink/mavros) and download it
+- Install the geographiclib dataset
 ```
 ./install_geographiclib_datasets.sh
 ```
-4. Launch mavros according to FC
+4. Launch MAVROS according to Flight controller (APM or PX4). 
 ```
-roslaunch mavros apm.launch 
-roslaunch mavros px4.launch 
+roslaunch mavros apm.launch # APM launch
+roslaunch mavros px4.launch # PX4 launch
 ```
 
 ## Commands
 - Changing flight mode
-  service call /mavros/set_mode with mode from apm in custom mode
+  Do a Service call `/mavros/set_mode` with mode from apm in custom mode
   
-  APM mode list: GUIDED_NOGPS AVOID_ADSB THROW BRAKE POSHOLD AUTOTUNE FLIP SPORT DRIFT OF_LOITER LAND POSITION CIRCLE RTL LOITER GUIDED AUTO ALT_HOLD ACRO STABILIZE
+  APM mode list: `GUIDED_NOGPS AVOID_ADSB THROW BRAKE POSHOLD AUTOTUNE FLIP SPORT DRIFT OF_LOITER LAND POSITION CIRCLE RTL LOITER GUIDED AUTO ALT_HOLD ACRO STABILIZE`
 
-  PX4 mode list: Known modes are: AUTO.PRECLAND AUTO.FOLLOW_TARGET AUTO.RTGS AUTO.LAND AUTO.RTL AUTO.MISSION RATTITUDE AUTO.LOITER STABILIZED AUTO.TAKEOFF OFFBOARD POSCTL ALTCTL AUTO.READY ACRO MANUAL
-
+  PX4 mode list: Known modes are: `AUTO.PRECLAND AUTO.FOLLOW_TARGET AUTO.RTGS AUTO.LAND AUTO.RTL AUTO.MISSION RATTITUDE AUTO.LOITER STABILIZED AUTO.TAKEOFF OFFBOARD POSCTL ALTCTL AUTO.READY ACRO MANUAL`
+  The efforts outlined within this document utilize PX4 and thus adopt the PX4 mode list.
+  
 - Arming 
-  service call /mavros/cmd/arming
+  Do a service call to `/mavros/cmd/arming`
   
 - Setting throttle
-  topic pub setpoint_attitude/attitude
+  Publish on the rostopic: `setpoint_attitude/attitude`
  
-## mavros param
+## MAVROS Parameters
 - Circuit Breaker
-  - CBRK_SUPPLY_CHK
-  - CBRK_USB_CHK, disable USB and supply voltage check
- - pmw_min, stop mot arming spin
+  - `CBRK_SUPPLY_CHK`
+  - `CBRK_USB_CHK`, disable USB and supply voltage check
+ - `PWM_MIN`, stop mot arming spin
+ These parameters should also be able to be modified through QGroundControl
  
- ## Change log
+## Using QGroundControl
+QGroundControl is recommended as a Ground Control software due to heartbeat issues when other GCS is used such as Mission Planner or APMplanner. However, due to serial port loading, the FTDI USB breakout from the flight controller should be connected to the development computer while the Drone should interface with a seperate GCS computer running QGroundControl over USB serial or RF.
  
- 16/9
+## Change log
  
- 1. Changed param MAV_USEHILGPS to 1
- 2. published global_position/global msg
- 3. able to go pub setpoint_position/local and bypass position error.
- 4. unable to stay in offboard mode
- ---
- 
- 16/9
- global_position/raw/fix -- got something, but global_position/global is not getting msg
- /mavros/home_position/home -- no output. unable to set home through mavcmd service or topic
- 
- set home through takeoff mode (????) or maybe suddenly light turn green signalling GPS fixed
- 
- unable to setpoint_position/global and change to offboard. 
+### 16/9
 
-managed to get things flying through setpoint_position/local with z=2, without setting frame rate 100, change to offboard
- 
- 
+1. Changed param `MAV_USEHILGPS` to 1
+2. Published `global_position/global` msg
+3. Able to go pub `setpoint_position/local` and bypass position error.
+4. Unable to stay in offboard mode
+---
 
- 
- 
- 
+### 16/9
+
+1. Pre-flight
+  - Calibrated the Compass to eliminate any Mag Inconsistency issues
+  - Reset `EKF2_AID_GPS` to 1
+  - Reset `CBRK_GPSFAIL` to 0
+2. For the most part, `global_position/raw/fix` outputs raw data but `global_position/global` frequently fails to reflect that the Drone has received a GPS lock (indicator lights remain blue)
+3. No home output published on the rostopic`/mavros/home_position/home`. Unable to set home through mavcmd service or topic
+4. Somehow or rather, the Drone managed to get a GPS Fix (success was not replicable after a power cycle). Some possible things that fixed it could have been:
+  - Set flight mode to `AUTO.TAKEOFF` - might have got the drone to set auto home
+  - Set flight mode to `STABILIZE` - on second try, this got the drone to blink green for a while before it reverted to failsafe mode
+5. Unable to publish to `setpoint_position/global` and change to offboard. 
+6. What worked after getting a GPS fix:
+  - Publish on the `mavros/setpoint_position/local` topic at a rate of 100 with only the `z` component set to 2
+  - Set the flight mode to `OFFBOARD`
+  - Drone motors will spin up
+
 
 ## TODO
 1. OFFBOARD timeout 0.5s, need to constantly send mavlink command, command is queueing up serial line.
