@@ -1,11 +1,14 @@
 # MRS Rox My Sox
 
+
 ## Introduction
 This documents the efforts of the SUTD [Multi-Rotor Society(MRS)](https://github.com/multirotorsociety) to get MAVROS to work with drones in a variety of use cases including but not limited to:
 - GPS-enabled with `OFFBOARD` control using Global Pose
 - GPS-denied with `OFFBOARD` contol using Local Pose
 The test hardware is a PixHawk Cube running PX4.
 More detailed instructions will be outlined as progress is made.
+
+
 
 ## Installing mavros
 
