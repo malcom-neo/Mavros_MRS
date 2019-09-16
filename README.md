@@ -1,7 +1,8 @@
 # MRS Rocks My Socks
 
-## Introduction
-This is a SUTD capstone(fyp) that is about an autonomous quad built to inspect for cracks in the inner ship hull through contact based sonic waves. It is built using ROS Melodic architecture, and is build in collaboration with SUTD's club [Multi-Rotor Society(MRS)](https://github.com/multirotorsociety).
+## Intro
+Built in collaboration with SUTD's club [Multi-Rotor Society(MRS)](https://github.com/multirotorsociety).
+
 
 ## Installing mavros
 
