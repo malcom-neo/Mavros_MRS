@@ -47,6 +47,25 @@ roslaunch mavros px4.launch
   - CBRK_SUPPLY_CHK
   - CBRK_USB_CHK, disable USB and supply voltage check
  - pmw_min, stop mot arming spin
+ 
+ ## progress
+ 
+ ---
+ 
+ 16/9
+ global_position/raw/fix -- got something, but global_position/global is not getting msg
+ /mavros/home_position/home -- no output. unable to set home through mavcmd service or topic
+ 
+ set home through takeoff mode (????) or maybe suddenly light turn green signalling GPS fixed
+ 
+ unable to setpoint_position/global and change to offboard. 
+
+managed to get things flying through setpoint_position/local with z=2 rate 100, change to offboard
+ 
+
+ 
+ 
+ 
 
 ## TODO
 1. OFFBOARD timeout 0.5s, need to constantly send mavlink command, command is queueing up serial line.
