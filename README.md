@@ -22,6 +22,8 @@ Debian installation is the most convenient though it is also possible to build f
 2. GeographicLib installation:
 ```
 sudo apt-get install geographiclib-*
+sudo apt-get install libgeographic-dev
+sudo apt-get install geographiclib-tools
 ```
 
 3. Source ros and install dataset
