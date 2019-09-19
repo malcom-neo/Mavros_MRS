@@ -38,6 +38,11 @@ roslaunch mavros apm.launch # APM launch
 roslaunch mavros px4.launch # PX4 launch
 ```
 
+## Trying out example SITL
+
+1. build [PX4](https://github.com/PX4/Firmware/tree/master/launch)
+2. move models in [sitl_gazebo](https://github.com/PX4/sitl_gazebo) to PX4 and change the package used for mavros_posix_sitl.launch or posix_sitl.launch. Cause i cant get it to build and too lazy to explore further ~~so you can **suck mah dick**~~
+
 ## Commands
 - Changing flight mode
   Do a Service call `/mavros/set_mode` with mode from apm in custom mode
