@@ -37,12 +37,6 @@ sudo apt-get install geographiclib-tools
 roslaunch mavros apm.launch # APM launch
 roslaunch mavros px4.launch # PX4 launch
 ```
-
-## Trying out example SITL
-
-1. build [PX4](https://github.com/PX4/Firmware/tree/master/launch)
-2. Follow [this](https://github.com/PX4/Devguide/blob/master/en/simulation/ros_interface.md)
-
 ## Commands
 - Changing flight mode
   Do a Service call `/mavros/set_mode` with mode from apm in custom mode
@@ -95,6 +89,18 @@ QGroundControl is recommended as a Ground Control software due to heartbeat issu
   - Set the flight mode to `OFFBOARD`
   - Drone motors will spin up
 
+---
+## Trying out example SITL
+
+### installation and running
+1. build [PX4](https://github.com/PX4/Firmware/tree/master/launch)
+2. Follow [this](https://github.com/PX4/Devguide/blob/master/en/simulation/ros_interface.md)
+3. In the terminal that ran launch, `param set <param_name> <value>` to change param
+
+### px4 param
+- MIS_TAKEOFF_ALT: set takeoff alt. Default 2.5m
+- NAV_DLL_ACT: datalink failsafe action. Set to 0 to disable
+- NAV_RCL_ACT: RC failsafe action. Set to 0 to disable
 
 ## TODO
 1. OFFBOARD timeout 0.5s, need to constantly send mavlink command, command is queueing up serial line.
