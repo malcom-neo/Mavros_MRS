@@ -91,6 +91,7 @@ QGroundControl is recommended as a Ground Control software due to heartbeat issu
 
 ---
 ## Trying out example SITL
+The package IRIS model has gps plugin in the sdf file. With the gps plugin, everything works but breaks when the plugin is removed
 
 ### installation and running
 1. build [PX4](https://github.com/PX4/Firmware/tree/master/launch)
@@ -101,6 +102,9 @@ QGroundControl is recommended as a Ground Control software due to heartbeat issu
 - MIS_TAKEOFF_ALT: set takeoff alt. Default 2.5m
 - NAV_DLL_ACT: datalink failsafe action. Set to 0 to disable
 - NAV_RCL_ACT: RC failsafe action. Set to 0 to disable
+
+
+---
 
 ## TODO
 1. OFFBOARD timeout 0.5s, need to constantly send mavlink command, command is queueing up serial line.
