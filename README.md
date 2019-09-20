@@ -95,7 +95,7 @@ QGroundControl is recommended as a Ground Control software due to heartbeat issu
 ### installation and running
 1. build [PX4](https://github.com/PX4/Firmware/tree/master/launch)
 2. Follow [this](https://github.com/PX4/Devguide/blob/master/en/simulation/ros_interface.md)
-3. In the terminal that ran launch, `param set <param_name> <value>` to change param
+3. In the terminal that ran launch, `param set <param_name> <value>` to change param. **disable Datalink and RC failsafe**
 
 ### px4 param
 - MIS_TAKEOFF_ALT: set takeoff alt. Default 2.5m
