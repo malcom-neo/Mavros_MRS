@@ -14,7 +14,7 @@ More detailed instructions will be outlined as progress is made.
 
 1. Debian installation:
 ```
-sudo apt-get install ros-melodic-mavros
+build from source v0.32.0
 sudo apt-get install ros-melodic-mavros-extras
 ```
 Debian installation is the most convenient though it is also possible to build from source: instructions [here](https://dev.px4.io/v1.9.0/en/ros/mavros_installation.html#source-installation).
