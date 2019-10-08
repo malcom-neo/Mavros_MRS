@@ -86,7 +86,7 @@ setpoint_raw/local: z-100
 2. Havent test tf
 3. ekf working? LPE may not be actual fusion
 4. Sonar and flow callibration
-
+5. change the [following param](https://docs.px4.io/v1.9.0/en/advanced_config/parameter_reference.html) all the flow param
 ### 16/9
 
 1. Changed param `MAV_USEHILGPS` to 1
