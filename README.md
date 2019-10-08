@@ -72,7 +72,7 @@ mav_usehilgps = 1
 [LPE_FUSION](https://dev.px4.io/v1.9.0/en/advanced/parameter_reference.html#LPE_FUSION) = 7 (baro issue failed) 2(OF and baro worked and have gps and home log)
 
 ***Proved Z axis working***
-<u>sumamry working formula for z axis</u>
+Params summary
 SYS_MC_EST_GROUP = 1
 mav_usehilgps = 1
 lpe_fusion = 7
