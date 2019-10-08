@@ -64,12 +64,28 @@ QGroundControl is recommended as a Ground Control software due to heartbeat issu
  
 ## Change log
  
+ 
 ### 8/10
 [SYS_MC_EST_GROUP](https://dev.px4.io/v1.9.0/en/advanced/switching_state_estimators.html) = 1 
 LPE_FAKE_ORIGIN =1
 mav_usehilgps = 1
-lpe_fusion =1
 [LPE_FUSION](https://dev.px4.io/v1.9.0/en/advanced/parameter_reference.html#LPE_FUSION) = 7 (baro issue failed) 2(OF and baro worked and have gps and home log)
+
+***Proved Z axis working***
+<u>sumamry working formula for z axis</u>
+SYS_MC_EST_GROUP = 1
+mav_usehilgps = 1
+lpe_fusion = 7
+LPE_FAKE_ORIGIN =1
+
+#### topic published
+setpoint_raw/local: z-100 
+
+#### issues
+1. flooding serial line. can increase to 60hz (os limit)?
+2. Havent test tf
+3. ekf working? LPE may not be actual fusion
+4. Sonar and flow callibration
 
 ### 16/9
 
