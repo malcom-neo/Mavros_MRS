@@ -46,6 +46,8 @@ Enable multiple link with ardupilot
 - Got to [mavlink documentation](http://ardupilot.github.io/MAVProxy/html/index.html)
 ```
  mavproxy.py --master=/dev/ttyACM0 --baudrate 57600 --out udp:127.0.0.1:14540 --out udp:127.0.0.1:14550
+ 
+roslaunch mavros px4.launch fcu_url:=udp://0.0.0.0:14540@
 ```
 
 ## Commands
