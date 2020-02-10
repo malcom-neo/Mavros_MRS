@@ -40,6 +40,14 @@ roslaunch mavros px4.launch # PX4 launch
 5. Problem faced in first launch 
 
 -  RTT too high for timesync. Change timesync_rate to 0.0
+
+## mavlink proxy
+Enable multiple link with ardupilot
+- Got to [mavlink documentation](http://ardupilot.github.io/MAVProxy/html/index.html)
+```
+ mavproxy.py --master=/dev/ttyACM0 --baudrate 57600 --out udp:127.0.0.1:14540 --out udp:127.0.0.1:14550
+```
+
 ## Commands
 - Changing flight mode
   Do a Service call `/mavros/set_mode` with mode from apm in custom mode
